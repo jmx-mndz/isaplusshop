@@ -1,0 +1,81 @@
+/* =========================================================
+   About page — about.html
+   ========================================================= */
+.story-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 7vw, 110px); align-items: center; }
+.story-copy { display: grid; gap: 22px; }
+.story-copy p { color: var(--text-2); font-size: 1.05rem; }
+
+.story-visual { position: relative; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; transform-style: preserve-3d; }
+.sv-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(47,230,255,.25); }
+.sv-ring.r1 { inset: 0; animation: spin 40s linear infinite; border-style: dashed; }
+.sv-ring.r2 { inset: 12%; border-color: rgba(227,201,143,.3); animation: spin 28s linear infinite reverse; }
+.sv-ring.r3 { inset: 24%; background: radial-gradient(circle, rgba(29,125,255,.35), transparent 70%); border-color: rgba(47,230,255,.4); }
+.sv-ring.r1::before, .sv-ring.r2::before { content: ""; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 16px var(--cyan); }
+.sv-ring.r2::before { background: var(--gold); box-shadow: 0 0 16px var(--gold); top: auto; bottom: -5px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.sv-emblem { position: relative; width: 44%; transform: translateZ(60px); filter: drop-shadow(0 0 40px rgba(47,230,255,.45)); animation: floatY 6s ease-in-out infinite; }
+@keyframes floatY { 50% { translate: 0 -14px; } }
+.sv-tag { position: absolute; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 100px; background: rgba(10,17,34,.85); border: 1px solid var(--line-2); backdrop-filter: blur(10px); font-weight: 700; font-size: 0.85rem; transform: translateZ(80px); box-shadow: 0 20px 40px -20px #000; }
+.sv-tag .ic { width: 16px; height: 16px; color: var(--cyan); }
+.sv-tag.t1 { top: 12%; left: 0; } .sv-tag.t2 { top: 48%; right: -4%; } .sv-tag.t3 { bottom: 10%; left: 12%; }
+.sv-tag.t3 .ic { color: var(--gold); }
+
+.mission { padding-top: 0; }
+.mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.mission-card { display: grid; gap: 18px; padding: clamp(30px, 4vw, 50px); }
+.mission-card p { font-size: clamp(1.1rem, 1rem + 0.6vw, 1.45rem); color: var(--text-2); letter-spacing: -0.015em; line-height: 1.45; }
+
+.values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.value { display: grid; gap: 14px; align-content: start; min-height: 290px; }
+.value .ic { width: 34px; height: 34px; color: var(--cyan); stroke-width: 1.4; }
+.value h3 { font-size: 1.25rem; letter-spacing: -0.02em; }
+.value p { color: var(--muted); font-size: 0.95rem; }
+.value-num { position: absolute; top: 20px; right: 24px; font-size: 3.6rem; font-weight: 800; letter-spacing: -0.06em; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.12); transition: -webkit-text-stroke-color .4s; }
+.value:hover .value-num { -webkit-text-stroke-color: rgba(47,230,255,.6); }
+
+.team-grid { display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 20px; }
+.person { display: grid; gap: 20px; align-content: start; }
+.person-avatar { width: 76px; height: 76px; border-radius: 22px; display: grid; place-items: center; font-size: 2rem; font-weight: 800; color: #00131c; background: var(--grad-brand); box-shadow: 0 16px 40px -14px rgba(47,230,255,.7); transition: transform .6s var(--ease); }
+.person:nth-child(2) .person-avatar { background: var(--grad-gold); color: #1a1206; box-shadow: 0 16px 40px -14px rgba(227,201,143,.6); }
+.person h3 { font-size: 1.5rem; letter-spacing: -0.03em; }
+.person p { color: var(--muted); }
+.person-mail { display: flex; align-items: center; gap: 10px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--cyan); font-weight: 600; font-size: 0.92rem; overflow-wrap: anywhere; }
+.person-mail .ic { width: 18px; height: 18px; flex-shrink: 0; }
+.location { display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: center; }
+.location h3 { font-size: 1.4rem; letter-spacing: -0.03em; margin-bottom: 6px; }
+.location p { color: var(--muted); margin-bottom: 12px; }
+.loc-map { position: relative; aspect-ratio: 1; border-radius: 20px; overflow: hidden; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 50%, rgba(47,230,255,.2), transparent 60%), repeating-linear-gradient(0deg, rgba(47,230,255,.08) 0 1px, transparent 1px 16px), repeating-linear-gradient(90deg, rgba(47,230,255,.08) 0 1px, transparent 1px 16px), #070c19;
+  border: 1px solid var(--line-2); }
+.loc-pin { position: relative; z-index: 2; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(227,201,143,.25), 0 0 20px var(--gold); }
+.loc-pulse { position: absolute; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--gold); animation: ripple 2.4s var(--ease) infinite; }
+@keyframes ripple { to { transform: scale(6); opacity: 0; } }
+
+@media (max-width: 1100px) {
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .location { grid-column: 1 / -1; }
+}
+@media (max-width: 1024px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .story-visual { max-width: 460px; width: 100%; margin-inline: auto; }
+}
+@media (max-width: 640px) {
+  .mission-grid, .values-grid, .team-grid { grid-template-columns: 1fr; }
+  .value { min-height: 0; }
+  .location { grid-template-columns: 1fr; }
+  .loc-map { aspect-ratio: 16/8; }
+  .sv-tag { font-size: 0.75rem; padding: 8px 12px; }
+  .sv-tag.t2 { right: 0; }
+}
+
+@media (max-width: 640px) {
+  .story-grid { gap: 36px; }
+  .story-copy { gap: 16px; }
+  .story-copy p { font-size: 1rem; line-height: 1.7; }
+  .mission-grid, .values-grid, .team-grid { gap: 14px; }
+  .mission-card { padding: 26px 22px; gap: 14px; }
+  .mission-card p { font-size: 1.08rem; }
+  .value-num { font-size: 2.8rem; }
+  .person-avatar { width: 64px; height: 64px; font-size: 1.7rem; border-radius: 18px; }
+}

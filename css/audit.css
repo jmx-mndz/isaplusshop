@@ -1,0 +1,112 @@
+/* =========================================================
+   Free Audit page — audit.html (main CTA)
+   ========================================================= */
+.audit-hero { position: relative; padding: calc(var(--nav-h) + clamp(50px, 7vw, 100px)) 0 clamp(70px, 9vw, 120px); overflow: hidden; }
+.audit-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 90px); align-items: start; }
+.audit-copy { display: grid; gap: 24px; justify-items: start; }
+.audit-includes { display: grid; gap: 18px; margin-top: 8px; width: 100%; }
+.audit-includes li { display: flex; gap: 16px; align-items: flex-start; }
+.audit-includes .icon-orb { width: 46px; height: 46px; border-radius: 14px; flex-shrink: 0; }
+.audit-includes .icon-orb .ic { width: 20px; height: 20px; }
+.audit-includes h3 { font-size: 1.05rem; letter-spacing: -0.015em; }
+.audit-includes p { color: var(--muted); font-size: 0.93rem; }
+.audit-contact { display: grid; gap: 10px; padding-top: 22px; border-top: 1px solid var(--line); width: 100%; }
+.audit-contact a, .audit-contact span { display: flex; align-items: center; gap: 12px; color: var(--text-2); font-weight: 500; overflow-wrap: anywhere; }
+.audit-contact a:hover { color: var(--cyan); }
+.audit-contact .ic { width: 18px; height: 18px; color: var(--cyan); }
+
+.audit-form-wrap { position: sticky; top: 100px; }
+.audit-form { display: grid; gap: 22px; padding: clamp(24px, 3.4vw, 44px); background: radial-gradient(circle at 100% 0%, rgba(47,230,255,.14), transparent 50%), linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.015)); border-color: rgba(47,230,255,.2); box-shadow: 0 50px 120px -50px rgba(29,125,255,.6); }
+.af-head { display: grid; gap: 14px; }
+.af-steps { display: flex; align-items: center; gap: 10px; }
+.af-steps span { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 0.85rem; border: 1px solid var(--line-2); color: var(--muted); transition: all .5s var(--ease); flex-shrink: 0; }
+.af-steps span.active { background: var(--cyan); border-color: var(--cyan); color: #00131c; box-shadow: 0 0 0 5px rgba(47,230,255,.15), 0 0 24px rgba(47,230,255,.6); }
+.af-steps span.done { background: rgba(47,230,255,.15); border-color: rgba(47,230,255,.5); color: var(--cyan); }
+.af-steps i { flex: 1; height: 2px; border-radius: 2px; background: var(--line); position: relative; overflow: hidden; }
+.af-steps i::after { content: ""; position: absolute; inset: 0; background: var(--grad-brand); transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease); }
+.af-steps i.done::after { transform: scaleX(1); }
+.af-step-label { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+
+fieldset { border: 0; min-width: 0; }
+.af-panel { display: none; gap: 16px; }
+.af-panel.active { display: grid; animation: panelIn .6s var(--ease); }
+.af-panel.back { animation-name: panelBack; }
+@keyframes panelIn { from { opacity: 0; transform: translateX(30px); } }
+@keyframes panelBack { from { opacity: 0; transform: translateX(-30px); } }
+.af-legend { font-weight: 700; margin-bottom: 4px; }
+
+/* Floating-label fields */
+.field { position: relative; }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 26px 18px 10px; border-radius: 16px; font-size: 1rem;
+  background: rgba(0,0,0,.28); border: 1px solid var(--line-2); outline: none;
+  transition: border-color .3s, box-shadow .3s, background .3s;
+  -webkit-appearance: none; appearance: none;
+}
+.field textarea { resize: vertical; min-height: 120px; }
+.field select { cursor: pointer; padding-right: 44px; }
+.field.select::after { content: ""; position: absolute; right: 20px; top: 50%; width: 9px; height: 9px; margin-top: -6px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); pointer-events: none; }
+.field select option { background: #0a1122; color: var(--text); }
+.field label { position: absolute; left: 19px; top: 19px; color: var(--muted); pointer-events: none; transition: all .3s var(--ease); font-size: 1rem; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--cyan); background: rgba(47,230,255,.04); box-shadow: 0 0 0 4px rgba(47,230,255,.1); }
+.field input:focus + label, .field input:not(:placeholder-shown) + label,
+.field textarea:focus + label, .field textarea:not(:placeholder-shown) + label,
+.field select:focus + label, .field select:valid + label { top: 8px; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; color: var(--cyan); }
+.field.invalid input, .field.invalid select { border-color: #ff6b81; box-shadow: 0 0 0 4px rgba(255,107,129,.1); }
+.field.invalid label { color: #ff8a9b; }
+
+.af-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+.af-chips input { position: absolute; opacity: 0; pointer-events: none; }
+.af-chips span { display: inline-flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 100px; border: 1px solid var(--line-2); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all .35s var(--ease); }
+.af-chips span::before { content: "+"; font-weight: 800; color: var(--muted); transition: transform .35s var(--ease), color .3s; }
+.af-chips input:checked + span { background: rgba(47,230,255,.12); border-color: var(--cyan); color: #fff; }
+.af-chips input:checked + span::before { content: "✓"; color: var(--cyan); }
+.af-chips input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.af-error { color: #ff8a9b; font-size: 0.9rem; font-weight: 600; }
+.af-actions { display: flex; gap: 12px; justify-content: flex-end; align-items: center; }
+.af-actions .btn-primary { flex: 1; }
+.af-privacy { display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 0.84rem; }
+.af-privacy .ic { width: 16px; height: 16px; color: var(--cyan); }
+
+/* Success state with 3D spinning box */
+.af-success { display: grid; justify-items: center; text-align: center; gap: 16px; padding: 30px 0 10px; animation: panelIn .8s var(--ease); }
+.af-success[hidden] { display: none; }
+.af-success p { color: var(--text-2); max-width: 36ch; }
+.success-cube { position: relative; width: 90px; height: 90px; margin-bottom: 20px; transform-style: preserve-3d; animation: scSpin 2.4s var(--ease) both, scFloat 4s 2.4s ease-in-out infinite; }
+.sc-face { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(145deg, rgba(47,230,255,.35), rgba(11,58,140,.6)); border: 1px solid rgba(127,242,255,.8); color: #fff; }
+.sc-face .ic { width: 40px; height: 40px; stroke-width: 2.5; filter: drop-shadow(0 0 10px var(--cyan)); }
+.sc-face.f1 { transform: translateZ(45px); } .sc-face.f2 { transform: rotateY(180deg) translateZ(45px); }
+.sc-face.f3 { transform: rotateY(90deg) translateZ(45px); } .sc-face.f4 { transform: rotateY(-90deg) translateZ(45px); }
+.sc-face.f5 { transform: rotateX(90deg) translateZ(45px); } .sc-face.f6 { transform: rotateX(-90deg) translateZ(45px); }
+@keyframes scSpin { from { transform: rotateX(-200deg) rotateY(-340deg) scale(.3); opacity: 0; } to { transform: rotateX(-12deg) rotateY(-18deg); opacity: 1; } }
+@keyframes scFloat { 0%, 100% { transform: rotateX(-12deg) rotateY(-18deg); } 50% { transform: rotateX(-12deg) rotateY(18deg) translateY(-8px); } }
+.audit-form.sent > :not(.af-success) { display: none; }
+
+@media (max-width: 1024px) {
+  /* Tablets & phones: headline → form → details */
+  .audit-grid { display: flex; flex-direction: column; gap: 22px; }
+  .audit-copy { display: contents; }
+  .audit-copy > .breadcrumb { order: 0; }
+  .audit-copy > .eyebrow { order: 1; }
+  .audit-copy > h1 { order: 2; }
+  .audit-copy > .lead { order: 3; }
+  .audit-form-wrap { order: 4; width: 100%; position: static; margin: 14px 0 26px; }
+  .audit-includes { order: 5; }
+  .audit-contact { order: 6; }
+}
+@media (max-width: 480px) {
+  .af-actions { flex-wrap: wrap; }
+  .af-actions .btn { width: 100%; }
+  .af-actions #prevBtn { order: 2; }
+  .af-steps span { width: 32px; height: 32px; }
+}
+
+@media (max-width: 640px) {
+  .audit-hero { padding: calc(var(--nav-h) + 28px) 0 64px; }
+  .audit-form { padding: 22px 18px; gap: 18px; }
+  .audit-includes { gap: 16px; }
+  .audit-includes h3 { font-size: 1rem; }
+  .audit-includes p { font-size: 0.9rem; line-height: 1.55; }
+  .field input, .field select, .field textarea { font-size: 16px; } /* prevents iOS zoom on focus */
+}
